@@ -1,10 +1,9 @@
 import React from "react";
-import "./LoginForm.css";
 import Header from "./components/Header";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-class LoginForm extends React.Component {
+export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
@@ -40,11 +39,11 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <Header btn="Register" href="https://www.google.com/" />
+        <Header btn="Login" href="/login" />
 
         <form onSubmit={this.handleSubmit} className="form-area center">
           <h1>
-            <b>Login to your account</b>
+            <b>Register Account</b>
           </h1>
           <input
             placeholder="Email"
@@ -64,9 +63,6 @@ class LoginForm extends React.Component {
           <br />
 
           <div className="right-align">
-            <a href="https://www.google.com/">Forgot My Password</a>
-            <br />
-
             {/* This is using the pre-made button Components from Bootstrap */}
             <Button
               type="submit"
@@ -74,7 +70,7 @@ class LoginForm extends React.Component {
               onClick={this.handleSubmit}
               className="rounded-pill login-button"
             >
-              Login
+              Register
             </Button>
           </div>
         </form>
@@ -82,5 +78,3 @@ class LoginForm extends React.Component {
     );
   }
 }
-
-export default LoginForm;
