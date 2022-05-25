@@ -6,19 +6,20 @@ import axios from "axios";
 export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+    };
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
+  handleTextChange(e) {
+    this.setState({ [e.target.id]: e.target.value });
+    console.log(this.state);
   }
 
   async handleSubmit(e) {
@@ -45,11 +46,12 @@ export class RegisterForm extends React.Component {
           <h1>
             <b>Register Account</b>
           </h1>
+          <br />
           <input
             placeholder="Email"
             type="text"
-            size="100px"
-            onChange={this.handleEmailChange}
+            id="email"
+            onChange={this.handleTextChange}
             className="textbox"
           />
           <br />
@@ -57,7 +59,27 @@ export class RegisterForm extends React.Component {
           <input
             placeholder="Password"
             type="password"
-            onChange={this.handlePasswordChange}
+            id="password"
+            onChange={this.handleTextChange}
+            className="textbox"
+          />
+          <br />
+          <br />
+
+          <input
+            placeholder="First Name"
+            type="first-name"
+            id="firstName"
+            onChange={this.handleTextChange}
+            className="textbox"
+          />
+          <br />
+
+          <input
+            placeholder="Last Name"
+            type="last name"
+            id="lastName"
+            onChange={this.handleTextChange}
             className="textbox"
           />
           <br />
