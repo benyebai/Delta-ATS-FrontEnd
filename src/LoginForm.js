@@ -1,13 +1,16 @@
 import React from "react";
 import "./LoginForm.css";
 import Header from "./components/Header";
-import Button from "react-bootstrap/Button";
+import { Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import axios from "axios";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = {
+      info: { email: "", password: "" },
+      isLogin: true,
+    };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -39,14 +42,29 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const handleToggle = (value) => {
+      this.setState({ isLogin: value });
+      console.log(this.state);
+    };
     return (
       <div>
         <Header btn="Register" href="https://www.google.com/" />
 
         <form onSubmit={this.handleSubmit} className="form-area center">
-          <h1>
-            <b>Login to your account</b>
-          </h1>
+          <ToggleButtonGroup
+            type="radio"
+            name="options"
+            value={this.state.isLogin}
+            className="options"
+            onChange={handleToggle}
+          >
+            <ToggleButton id="option1" className="options" variant="outline-danger" size="xxl" value={true}>
+              Login
+            </ToggleButton>
+            <ToggleButton id="option2" className="options" variant="outline-danger" size="xxl" value={false}>
+              Register
+            </ToggleButton>
+          </ToggleButtonGroup>
           <input
             placeholder="Email"
             type="text"
@@ -73,7 +91,7 @@ class LoginForm extends React.Component {
               type="submit"
               variant="danger"
               onClick={this.handleSubmit}
-              className="rounded-pill login-button"
+              className="login-button right-align"
             >
               Login
             </Button>

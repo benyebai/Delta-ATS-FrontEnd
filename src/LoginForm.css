@@ -3,11 +3,22 @@
   width: 50%;
 }
 
+.right-align {
+  float: right;
+}
+
+.options {
+  width: 90%;
+  margin-bottom: 3%;
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+}
+
 .textbox {
   width: 100%;
   height: 1%;
   padding: 2% 2%;
-  margin: 1% 0%;
+  margin: 1.5% 0%;
   box-sizing: border-box;
 }
 
@@ -15,15 +26,14 @@
   width: 40%;
   text-align: center;
   margin-top: 3%;
-}
-
-.right-align {
-  float: right;
+  padding: 3%;
+  border-style: groove;
+  overflow: hidden;
+  min-width: 300px;
 }
 
 .login-button {
   margin: 5%;
-  float: right;
 }
 
 ::placeholder {
