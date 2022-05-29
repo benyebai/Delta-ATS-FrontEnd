@@ -8,15 +8,19 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      info: { email: "", password: "" },
+      email: "",
+      password: "",
+      confirmPassword: "",
       isLogin: true,
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleContinue.bind(this);
   }
 
+  // TODO: Merge handle change functions
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
   }
@@ -25,7 +29,11 @@ class LoginForm extends React.Component {
     this.setState({ password: e.target.value });
   }
 
-  async handleSubmit(e) {
+  handleConfirmPasswordChange(e) {
+    this.setState({ confirmPassword: e.target.value });
+  }
+
+  async handleLogin(e) {
     e.preventDefault();
     await axios
       .post("http://localhost:3001/users/authenticate", this.state)
@@ -41,16 +49,27 @@ class LoginForm extends React.Component {
       });
   }
 
+  /* TODO: API call to confirm vaild email
+    confirm two passwords are same
+    send info to next page
+  */
+  async handleContinue(e) {
+    e.preventDefault();
+    console.log("continue");
+  }
+
   render() {
     const handleToggle = (value) => {
       this.setState({ isLogin: value });
-      console.log(this.state);
     };
     return (
       <div>
-        <Header btn="Register" href="https://www.google.com/" />
+        <Header />
 
-        <form onSubmit={this.handleSubmit} className="form-area center">
+        <form
+          onSubmit={this.state.isLogin ? this.handleLogin : this.handleContinue}
+          className="form-area center"
+        >
           <ToggleButtonGroup
             type="radio"
             name="options"
@@ -58,10 +77,22 @@ class LoginForm extends React.Component {
             className="options"
             onChange={handleToggle}
           >
-            <ToggleButton id="option1" className="options" variant="outline-danger" size="xxl" value={true}>
+            <ToggleButton
+              id="option1"
+              className="options"
+              variant="outline-danger"
+              size="xxl"
+              value={true}
+            >
               Login
             </ToggleButton>
-            <ToggleButton id="option2" className="options" variant="outline-danger" size="xxl" value={false}>
+            <ToggleButton
+              id="option2"
+              className="options"
+              variant="outline-danger"
+              size="xxl"
+              value={false}
+            >
               Register
             </ToggleButton>
           </ToggleButtonGroup>
@@ -82,18 +113,35 @@ class LoginForm extends React.Component {
           />
           <br />
 
+          {!this.state.isLogin && (
+            <div>
+              <input
+                placeholder="Confirm Password"
+                type="password"
+                onChange={this.handlePasswordChange}
+                className="textbox"
+              />
+              <br />
+            </div>
+          )}
+
           <div className="right-align">
-            <a href="https://www.google.com/">Forgot My Password</a>
+            {this.state.isLogin && (
+              <a href="https://www.google.com/">Forgot My Password</a>
+            )}
             <br />
 
             {/* This is using the pre-made button Components from Bootstrap */}
+
             <Button
               type="submit"
               variant="danger"
-              onClick={this.handleSubmit}
+              onClick={
+                this.state.isLogin ? this.handleLogin : this.handleContinue
+              }
               className="login-button right-align"
             >
-              Login
+              {this.state.isLogin ? "Login" : "Continue"}
             </Button>
           </div>
         </form>
