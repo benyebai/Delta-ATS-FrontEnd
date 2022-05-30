@@ -58,7 +58,7 @@ export class RegisterForm extends React.Component {
     console.log(toSend)
 
     await axios
-      .post("http://localhost:3001", toSend)
+      .post("http://localhost:3001/users/create", toSend)
       .then((res) => {
         console.log("worked");
       })
