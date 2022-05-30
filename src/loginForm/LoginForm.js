@@ -1,9 +1,8 @@
 import React from "react";
 import "./LoginForm.css";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import { Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import axios from "axios";
-import { RegisterForm } from "./registerForm/RegisterForm";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class LoginForm extends React.Component {
       password: "",
       confirmPassword: "",
       isLogin: true,
-      failure : ""
+      failure: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,10 +23,10 @@ class LoginForm extends React.Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
 
-  handleChange(e){
+  handleChange(e) {
     let toChange = e.target.id;
     this.setState({
-      [toChange]: e.target.value
+      [toChange]: e.target.value,
     });
   }
 
@@ -50,24 +49,24 @@ class LoginForm extends React.Component {
   //TODO?: Prevent invalid emails
   async handleContinue(e) {
     e.preventDefault();
-    if(this.state.password != this.state.confirmPassword){
-      alert("password not the same")
+    if (this.state.password !== this.state.confirmPassword) {
+      alert("Password does not match");
     }
-    await axios.post("http://localhost:3001/users/checkValidEmail", this.state)
-    .then((res) => {
-
-      if(res.data[0].exists == false){
-        this.props.register(this.state);
-        window.location.href = "/submission/register"
-
-      }
-      else{
-        console.log("email already in use")
-      }
-    })
-    .catch((res) => {
-      console.log("ok we couldnt contact sever for some reason")
-    })
+    await axios
+      .post("http://localhost:3001/users/checkValidEmail", this.state)
+      .then((res) => {
+        if (res.data[0].exists === false) {
+          this.props.callbackEmailPassword(this.state);
+          window.location.href = "/submission/register";
+        } else {
+          console.log("Email already in use");
+        }
+      })
+      .catch((res) => {
+        console.log(
+          "An error occured while trying to connect to the server. Try again later"
+        );
+      });
   }
 
   render() {

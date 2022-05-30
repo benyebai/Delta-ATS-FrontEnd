@@ -3,14 +3,15 @@ import Header from "../components/Header";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-
 export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
-    if(this.props.info == null){
+
+    // ensure JSON object exists
+    if (this.props.info == null) {
       window.location.href = "/submission";
     }
-    this.info = JSON.parse(this.props.info)
+    this.info = JSON.parse(this.props.info);
     this.state = {
       firstName: "",
       lastName: "",
@@ -22,8 +23,8 @@ export class RegisterForm extends React.Component {
       phoneNum: "",
     };
 
-
-    if(this.info.email == null || this.info.password == null){
+    // ensure JSON contains all the info
+    if (this.info.email == null || this.info.password == null) {
       window.location.href = "/submission";
     }
 
@@ -39,10 +40,10 @@ export class RegisterForm extends React.Component {
     e.preventDefault();
 
     let toSend = this.state;
-    //reformat the info we want to send here
-    //meaning remove non-numbers on phonenumbers
-    //lowercase everything in country and city and province
-    //capitalize everything on postal code
+    // reformat the info we want to send here
+    // meaning remove non-numbers on phonenumbers
+    // lowercase everything in country and city and province
+    // capitalize everything on postal code
     toSend["country"] = toSend["country"].toLowerCase();
     toSend["city"] = toSend["city"].toLowerCase();
     toSend["province"] = toSend["province"].toLowerCase();
@@ -51,22 +52,22 @@ export class RegisterForm extends React.Component {
 
     toSend["phoneNum"] = toSend["phoneNum"].replace(/\D/g, "");
 
-    //adding info that should exist
+    // adding info that should exist
     toSend.email = this.info.email;
     toSend.password = this.info.password;
 
-    console.log(toSend)
+    console.log(toSend);
 
     await axios
       .post("http://localhost:3001", toSend)
       .then((res) => {
-        console.log("worked");
+        console.log("Success, a new account has been created");
       })
       .catch((err) => {
-        console.log("password and email not matching");
+        console.log(
+          "An error occured when creating the account. Please try again later."
+        );
       });
-
-    //alert("Email: " + this.state.email + ", Password: " + this.state.password);
   }
 
   render() {

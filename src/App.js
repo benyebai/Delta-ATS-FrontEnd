@@ -1,5 +1,4 @@
 import "./App.css";
-import LoginForm from "./LoginForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
 import { RegisterLog } from "./RegisterAndLog";
