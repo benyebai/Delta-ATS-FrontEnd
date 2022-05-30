@@ -7,6 +7,10 @@ import axios from "axios";
 export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
+    if(this.props.info == null){
+      window.location.href = "/submission";
+    }
+    this.info = JSON.parse(this.props.info)
     this.state = {
       firstName: "",
       lastName: "",
@@ -18,8 +22,9 @@ export class RegisterForm extends React.Component {
       phoneNum: "",
     };
 
-    if(this.props.email == null || this.props.password == null){
-      //window.location.href = "/login";
+
+    if(this.info.email == null || this.info.password == null){
+      window.location.href = "/submission";
     }
 
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -47,8 +52,10 @@ export class RegisterForm extends React.Component {
     toSend["phoneNum"] = toSend["phoneNum"].replace(/\D/g, "");
 
     //adding info that should exist
-    toSend.email = this.props.email;
-    toSend.password = this.props.password;
+    toSend.email = this.info.email;
+    toSend.password = this.info.password;
+
+    console.log(toSend)
 
     await axios
       .post("http://localhost:3001", toSend)
@@ -65,7 +72,7 @@ export class RegisterForm extends React.Component {
   render() {
     return (
       <div>
-        <Header btn="Login" href="/login" />
+        <Header btn="Login" href="/submission" />
 
         <form onSubmit={this.handleSubmit} className="form-area center">
           <h1>

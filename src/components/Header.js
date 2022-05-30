@@ -13,7 +13,7 @@ class Header extends React.Component {
         <div className="banner-grey">
           <a href="/">
             <Image
-              src="./DeltaLogoModified.png"
+              src="/DeltaLogoModified.png"
               className="logo-img-modified"
             />
           </a>

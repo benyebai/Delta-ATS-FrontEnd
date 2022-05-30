@@ -20,7 +20,6 @@ class LoginForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleRegister = this.handleContinue.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
   }
 
