@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleRegister = this.handleContinue.bind(this);
+    this.handleContinue = this.handleContinue.bind(this);
   }
 
   handleChange(e){
@@ -52,13 +52,19 @@ class LoginForm extends React.Component {
   */
   async handleContinue(e) {
     e.preventDefault();
-    if(this.state.password != this.state.confirmPassword){
 
+    if(this.state.password != this.state.confirmPassword){
+      this.setState({"failure": "Passwords do not match"});
     }
+
+    this.props.register(this.state);
+    window.location.href = "/submission/register";
+
     await axios.post("http://localhost:3001/users/testValidEmail", this.state.email)
     .then((res) => {
       if(res.data == true){
-        console.log("gaming move on")
+        this.props.register(this.state);
+        window.location.href = "/submission/register";
       }
       else{
         console.log("email already in use")

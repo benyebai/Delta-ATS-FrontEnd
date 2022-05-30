@@ -2,16 +2,15 @@ import "./App.css";
 import LoginForm from "./LoginForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
+import { RegisterLog } from "./RegisterAndLog";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route index element={<Landing />} />
-            <Route path="login" element={<LoginForm />} />
-          </Route>
+          <Route index element={<Landing />} />
+          <Route path="/submission/*" element={<RegisterLog />} />
         </Routes>
       </BrowserRouter>
     </div>

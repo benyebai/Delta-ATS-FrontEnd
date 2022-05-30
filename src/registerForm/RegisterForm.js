@@ -18,8 +18,11 @@ export class RegisterForm extends React.Component {
       phoneNum: "",
     };
 
-    if(this.props.email == null || this.props.password == null){
-      //window.location.href = "/login";
+    if(this.props.info == null){
+      window.location.href = "/submission";
+    }
+    if(this.props.info.email == null || this.props.info.password == null){
+      //window.location.href = "/submission";
     }
 
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -65,7 +68,7 @@ export class RegisterForm extends React.Component {
   render() {
     return (
       <div>
-        <Header btn="Login" href="/login" />
+        <Header btn="Login" href="/submission" />
 
         <form onSubmit={this.handleSubmit} className="form-area center">
           <h1>
