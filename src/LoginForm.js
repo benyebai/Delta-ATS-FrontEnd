@@ -3,6 +3,7 @@ import "./LoginForm.css";
 import Header from "./components/Header";
 import { Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import axios from "axios";
+import { RegisterForm } from "./registerForm/RegisterForm";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -52,12 +53,13 @@ class LoginForm extends React.Component {
     if(this.state.password != this.state.confirmPassword){
       alert("password not the same")
     }
-    console.log(this.state.email)
     await axios.post("http://localhost:3001/users/checkValidEmail", this.state)
     .then((res) => {
 
       if(res.data[0].exists == false){
-        console.log("gaming move on")
+        this.props.register(this.state);
+        window.location.href = "/submission/register"
+
       }
       else{
         console.log("email already in use")
