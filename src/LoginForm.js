@@ -57,9 +57,6 @@ class LoginForm extends React.Component {
       this.setState({"failure": "Passwords do not match"});
     }
 
-    this.props.register(this.state);
-    window.location.href = "/submission/register";
-
     await axios.post("http://localhost:3001/users/testValidEmail", this.state.email)
     .then((res) => {
       if(res.data == true){

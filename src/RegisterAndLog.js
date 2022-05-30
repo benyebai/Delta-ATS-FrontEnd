@@ -20,7 +20,7 @@ export class RegisterLog extends React.Component {
             "email" : info.email,
             "password": info.password
         }
-        toSet = toSet.stringify()
+        toSet = JSON.stringify(toSet)
         window.sessionStorage.setItem("registerInfo", toSet);
     }
 
