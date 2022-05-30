@@ -7,32 +7,28 @@ import axios from "axios";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+
+    //failure text change to the type of failure
+    //"email already in use" or something
     this.state = {
       email: "",
       password: "",
       confirmPassword: "",
       isLogin: true,
+      failure : ""
     };
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleContinue.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
   }
 
-  // TODO: Merge handle change functions
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  handleConfirmPasswordChange(e) {
-    this.setState({ confirmPassword: e.target.value });
+  handleChange(e){
+    let toChange = e.target.id;
+    this.setState({
+      [toChange]: e.target.value
+    });
   }
 
   async handleLogin(e) {
@@ -54,22 +50,21 @@ class LoginForm extends React.Component {
   //TODO?: Prevent invalid emails
   async handleContinue(e) {
     e.preventDefault();
-    console.log("continue");
-
-    await axios
-      .post("http://localhost:3001/users/checkEmail", this.state.email)
-      .then((res) => {
-        if (!res) {
-          alert("Email is already taken");
-        }
-      })
-      .catch((err) => {
-        console.log("error");
-      });
-
-      if(!this.state.password.localeCompare(this.state.confirmPassword) == 0) {
-        alert("Confirm Password is not the same as password");
+    if(this.state.password != this.state.confirmPassword){
+      alert("password not the same")
+    }
+    await axios.post("http://localhost:3001/users/testValidEmail", this.state.email)
+    .then((res) => {
+      if(res.data == true){
+        console.log("gaming move on")
       }
+      else{
+        console.log("email already in use")
+      }
+    })
+    .catch((res) => {
+      console.log("ok we couldnt contact sever for some reason")
+    })
   }
 
   render() {
@@ -114,16 +109,18 @@ class LoginForm extends React.Component {
             placeholder="Email"
             type="text"
             size="100px"
-            onChange={this.handleEmailChange}
+            onChange={this.handleChange}
             className="textbox"
+            id="email"
           />
           <br />
 
           <input
             placeholder="Password"
             type="password"
-            onChange={this.handlePasswordChange}
+            onChange={this.handleChange}
             className="textbox"
+            id="password"
           />
           <br />
 
@@ -132,8 +129,9 @@ class LoginForm extends React.Component {
               <input
                 placeholder="Confirm Password"
                 type="password"
-                onChange={this.handleConfirmPasswordChange}
+                onChange={this.handleChange}
                 className="textbox"
+                id="confirmPassword"
               />
               <br />
             </div>
