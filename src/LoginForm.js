@@ -46,22 +46,18 @@ class LoginForm extends React.Component {
       });
   }
 
-  /* TODO: API call to confirm vaild email
-    confirm two passwords are same
-    send info to next page
-  */
+  //TODO?: Prevent invalid emails
   async handleContinue(e) {
     e.preventDefault();
-
     if(this.state.password != this.state.confirmPassword){
-      this.setState({"failure": "Passwords do not match"});
+      alert("password not the same")
     }
-
-    await axios.post("http://localhost:3001/users/testValidEmail", this.state.email)
+    console.log(this.state.email)
+    await axios.post("http://localhost:3001/users/checkValidEmail", this.state)
     .then((res) => {
-      if(res.data == true){
-        this.props.register(this.state);
-        window.location.href = "/submission/register";
+
+      if(res.data[0].exists == false){
+        console.log("gaming move on")
       }
       else{
         console.log("email already in use")
@@ -134,7 +130,7 @@ class LoginForm extends React.Component {
               <input
                 placeholder="Confirm Password"
                 type="password"
-                onChange={this.handlePasswordChange}
+                onChange={this.handleChange}
                 className="textbox"
                 id="confirmPassword"
               />
