@@ -5,15 +5,19 @@ import axios from "axios";
 export class EditAbout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            email: "your eriginal email",
-            password: "password but porbbaly all ****",
-            firstName: "orginal first name",
-            lastName: "original last name",
-            phoneNum: "phone",
-            address: "address",
-            pronouns:"pronouns"
-        };
+        this.state = {
+            email: "cool@gmail.com",
+            password: "password123",
+            firstName: "Thomas",
+            lastName: "Zheng",
+            phoneNum: "7786969696",
+            country: "canada",
+            province: "British Columbia",
+            city:"Surrey",
+            postalCode:"V4N0Z3",
+            address: "Address",
+            pronouns:"He/Him"
+        }
 
         this.handleTextChange = this.handleTextChange.bind(this);
         this.submitInfo = this.submitInfo.bind(this);
@@ -35,45 +39,10 @@ export class EditAbout extends React.Component {
 
     handleTextChange(e) {
         let changed = e.target.id;
-        if(changed == "email"){
-            this.setState({
-                email : e.target.value
-            });
-        }
-        else if(changed == "password"){
-            this.setState({
-                password : e.target.value
-            });
-        }
-        else if(changed == "firstName"){
-            this.setState({
-                firstName : e.target.value
-            });
-        }
-        else if(changed == "lastName"){
-            this.setState({
-                lastName : e.target.value
-            });
-        }
-        else if(changed == "phoneNum"){
-            this.setState({
-                phoneNum : e.target.value
-            });
-        }
-        else if(changed == "address"){
-            this.setState({
-                address : e.target.value
-            });
-        }
-        else if(changed == "pronouns"){
-            this.setState({
-                pronouns : e.target.value
-            });
-        }
+        this.setState({
+            [changed]:e.target.value
+        });
 
-        
-        
-        
     }
 
     render() {
@@ -126,10 +95,43 @@ export class EditAbout extends React.Component {
                     <br />
 
                     <input
+                        placeholder="Country"
+                        onChange={this.handleTextChange}
+                        className="textbox"
+                        id = "country" 
+                        value = {this.state.country}
+                    />
+                    <br />
+                    <input
+                        placeholder="Province/State"
+                        onChange={this.handleTextChange}
+                        className="textbox"
+                        id = "province" 
+                        value = {this.state.province}
+                    />
+                    <br />
+                    <input
+                        placeholder="City"
+                        onChange={this.handleTextChange}
+                        className="textbox"
+                        id = "city" 
+                        value = {this.state.city}
+                    />
+                    <br />
+                    <input
+                        placeholder="Postal Code"
+                        onChange={this.handleTextChange}
+                        className="textbox"
+                        id = "postalCode" 
+                        value = {this.state.postalCode}
+                    />
+                    <br />
+
+                    <input
                         placeholder="Address"
                         onChange={this.handleTextChange}
                         className="textbox"
-                        id = "address" 
+                        id = "address"  b
                         value = {this.state.address}
                     />
                     <br />

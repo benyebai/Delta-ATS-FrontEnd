@@ -8,13 +8,17 @@ export class AboutPage extends React.Component {
 
         //state will be updated in component did mount, where we get info from database
         this.state = {
-            email: "your eriginal email",
-            password: "password but porbbaly all ****",
-            firstName: "orginal first name",
-            lastName: "original last name",
-            phoneNum: "phone",
-            address: "address",
-            pronouns:"pronouns"
+            email: "cool@gmail.com",
+            password: "password123",
+            firstName: "Thomas",
+            lastName: "Zheng",
+            phoneNum: "7786969696",
+            country: "canada",
+            province: "British Columbia",
+            city:"Surrey",
+            postalCode:"V4N0Z3",
+            address: "Address",
+            pronouns:"He/Him"
         }
         
         //temporary, will be passed down in props later
