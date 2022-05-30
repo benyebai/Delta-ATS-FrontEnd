@@ -18,7 +18,7 @@ export default class Landing extends React.Component {
             Register
           </a>
 
-          <a href="/login" className="topButton textButton">
+          <a href="/submission" className="topButton textButton">
             Login
           </a>
 
