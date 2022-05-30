@@ -7,30 +7,27 @@ import axios from "axios";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+
+    //failure text change to the type of failure
+    //"email already in use" or something
     this.state = {
       email: "",
       password: "",
       confirmPassword: "",
       isLogin: true,
+      failure : ""
     };
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleContinue.bind(this);
   }
 
-  // TODO: Merge handle change functions
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  handleConfirmPasswordChange(e) {
-    this.setState({ confirmPassword: e.target.value });
+  handleChange(e){
+    let toChange = e.target.id;
+    this.setState({
+      [toChange]: e.target.value
+    });
   }
 
   async handleLogin(e) {
@@ -55,7 +52,21 @@ class LoginForm extends React.Component {
   */
   async handleContinue(e) {
     e.preventDefault();
-    console.log("continue");
+    if(this.state.password != this.state.confirmPassword){
+
+    }
+    await axios.post("http://localhost:3001/users/testValidEmail", this.state.email)
+    .then((res) => {
+      if(res.data == true){
+        console.log("gaming move on")
+      }
+      else{
+        console.log("email already in use")
+      }
+    })
+    .catch((res) => {
+      console.log("ok we couldnt contact sever for some reason")
+    })
   }
 
   render() {
@@ -100,16 +111,18 @@ class LoginForm extends React.Component {
             placeholder="Email"
             type="text"
             size="100px"
-            onChange={this.handleEmailChange}
+            onChange={this.handleChange}
             className="textbox"
+            id="email"
           />
           <br />
 
           <input
             placeholder="Password"
             type="password"
-            onChange={this.handlePasswordChange}
+            onChange={this.handleChange}
             className="textbox"
+            id="password"
           />
           <br />
 
@@ -120,6 +133,7 @@ class LoginForm extends React.Component {
                 type="password"
                 onChange={this.handlePasswordChange}
                 className="textbox"
+                id="confirmPassword"
               />
               <br />
             </div>
