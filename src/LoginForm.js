@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
     if(this.state.password != this.state.confirmPassword){
       alert("password not the same")
     }
-    console.log(this.state.email)
+
     await axios.post("http://localhost:3001/users/checkValidEmail", this.state)
     .then((res) => {
 
