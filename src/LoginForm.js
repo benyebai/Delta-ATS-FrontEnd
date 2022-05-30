@@ -16,8 +16,10 @@ class LoginForm extends React.Component {
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleContinue.bind(this);
+    this.handleContinue = this.handleContinue.bind(this);
   }
 
   // TODO: Merge handle change functions
@@ -49,13 +51,25 @@ class LoginForm extends React.Component {
       });
   }
 
-  /* TODO: API call to confirm vaild email
-    confirm two passwords are same
-    send info to next page
-  */
+  //TODO?: Prevent invalid emails
   async handleContinue(e) {
     e.preventDefault();
     console.log("continue");
+
+    await axios
+      .post("http://localhost:3001/users/checkEmail", this.state.email)
+      .then((res) => {
+        if (!res) {
+          alert("Email is already taken");
+        }
+      })
+      .catch((err) => {
+        console.log("error");
+      });
+
+      if(!this.state.password.localeCompare(this.state.confirmPassword) == 0) {
+        alert("Confirm Password is not the same as password");
+      }
   }
 
   render() {
@@ -118,7 +132,7 @@ class LoginForm extends React.Component {
               <input
                 placeholder="Confirm Password"
                 type="password"
-                onChange={this.handlePasswordChange}
+                onChange={this.handleConfirmPasswordChange}
                 className="textbox"
               />
               <br />
