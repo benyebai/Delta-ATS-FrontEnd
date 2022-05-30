@@ -5,6 +5,8 @@ import axios from "axios";
 export class EditAbout extends React.Component {
     constructor(props) {
         super(props);
+
+
         this.state = {
             email: "cool@gmail.com",
             password: "password123",
@@ -21,6 +23,24 @@ export class EditAbout extends React.Component {
 
         this.handleTextChange = this.handleTextChange.bind(this);
         this.submitInfo = this.submitInfo.bind(this);
+    }
+
+    async componentDidMount(){
+        await axios.post("http://localhost:3001", "username or token idk")
+        .then((res) => {
+            if(res.data == null){
+                console.log("user does not exist")
+            }
+            else{
+                this.setState(res.data);
+            }
+            
+        })
+        .catch((res) =>{
+            console.log("couldnt contact server")
+        })
+        
+        
     }
 
     async submitInfo(e){
