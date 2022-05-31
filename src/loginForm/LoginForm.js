@@ -47,25 +47,38 @@ class LoginForm extends React.Component {
   }
 
   //TODO?: Prevent invalid emails
-  async handleContinue(e) {
+  handleContinue(e) {
     e.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
-      alert("Password does not match");
+      this.setState({
+        failure: "Passwords are not matching",
+      });
+      return;
     }
-    await axios
+
+    if (this.state.password.length < 8) {
+      this.setState({
+        failure: "Password needs to be at least 8 characters",
+      });
+      return;
+    }
+
+    let self = this;
+    axios
       .post("http://localhost:3001/users/checkValidEmail", this.state)
       .then((res) => {
         if (res.data[0].exists === false) {
           this.props.callbackEmailPassword(this.state);
           window.location.href = "/submission/register";
         } else {
-          console.log("Email already in use");
+          self.setState({
+            failure: "Email already in use",
+          });
+          //console.log("Email already in use");
         }
       })
       .catch((res) => {
-        console.log(
-          "An error occured while trying to connect to the server. Try again later"
-        );
+        self.setState({ failure: "Couldn't contact server, try again later" });
       });
   }
 
@@ -127,7 +140,7 @@ class LoginForm extends React.Component {
           <br />
 
           {!this.state.isLogin && (
-            <div>
+            <div className="confirmPass">
               <input
                 placeholder="Confirm Password"
                 type="password"
@@ -136,6 +149,7 @@ class LoginForm extends React.Component {
                 id="confirmPassword"
               />
               <br />
+              {this.state.failure}
             </div>
           )}
 
