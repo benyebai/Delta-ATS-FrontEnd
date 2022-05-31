@@ -19,3 +19,13 @@
 .bordered{
     border: solid black 1px
 }
+.changeButtons{
+    display: flex;
+}
+.changeButton{
+    margin-left: 2vw;
+}
+
+.contactInfo{
+    margin-top: 7vw;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import "./aboutPage.css";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 export class AboutPage extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export class AboutPage extends React.Component {
             firstName: "Thomas",
             lastName: "Zheng",
             phoneNum: "7786969696",
-            country: "canada",
+            country: "Canada",
             province: "British Columbia",
             city:"Surrey",
             postalCode:"V4N0Z3",
@@ -41,32 +41,39 @@ export class AboutPage extends React.Component {
             allInfo.push(<h1>{this.state[item]}</h1>);
         });
 
-        let contactInfo = ["firstName", "lastName", "country", "province", "city", "postalCode", "address", "pronouns","phoneNum"];
+        let contactInfo = ["firstName", "lastName", "pronouns", "country", "province", "city", "postalCode", "phoneNum", "address"];
         //this next list just contains the information in a more reader friendly way
-        let contactInfoCooler = ["First Name", "Last Name", "Country", "Province/State", "City", "Postal Code", "Address", "Pronouns", "Phone Number"];
-        let finishedInfo = []; // put finished react objects in here
+        let contactInfoCooler = ["First Name", "Last Name", "Pronouns" , "Country", "Province/State", "City", "Postal Code", "Phone Number", "Address", ];
+        let splits = [[],[],[],[]] // finished react objects go in here
+        let finished = []
+        let currentSplit = 0;
         for (let i = 0; i < contactInfo.length; i++){
-            let current = contactInfo[i];
+            if(i == 3 || i == 6 || i == 8){
+                currentSplit += 1;
+            }
 
-            let piece = (
-            <div className={current + " genericInfo"}>
-                <h3 className="labelText">
-                    {contactInfoCooler[i]}
-                </h3>
-                <h2 className = "infoText">
-                    {this.state[current]}
-                </h2>
-            </div>
+            let current = contactInfo[i];
+            let piece = ( 
+            <Col>
+                <div className={current + " genericInfo"}>
+                    <h3 className="labelText">
+                        {contactInfoCooler[i]}
+                    </h3>
+                    <h2 className = "infoText">
+                        {this.state[current]}
+                    </h2>
+                </div>
+            </Col>
             );
 
-            finishedInfo.push(piece);
+            splits[currentSplit].push(piece);
         }
 
         return (
             <div>
                 <div className = "importantInfo">
                     <div className="genericInfo">
-                        <div className = "email"> 
+                        <div className = "generic"> 
                             <h3 className="labelText">
                                 Email
                             </h3>
@@ -75,18 +82,33 @@ export class AboutPage extends React.Component {
                         <h2 className = "infoText">
                             {this.state.email}
                         </h2>
-
-                        <Button className = "changeEmail">
+                    </div>
+                    <div className = "changeButtons">
+                        <Button className = "changeButton Email">
                             Edit
                         </Button>
+                        <Button className="changeButton Password">
+                            Change Password
+                        </Button>
                     </div>
-                    <Button>
-                        change password
-                    </Button>
                 </div>
 
-                <div className = "Contact Info">
-                    {finishedInfo}
+                <div className = "contactInfo">
+                    <Container>
+                        <Row>
+                            {splits[0]}
+                        </Row>
+                        <Row>
+                            {splits[1]}
+                        </Row>
+                        <Row>
+                            {splits[2]}
+                        </Row>
+                        <Row>
+                            {splits[3]}
+                        </Row>
+                    </Container>
+
                     <Button>
                         Edit
                     </Button>
