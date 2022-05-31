@@ -108,7 +108,6 @@ export class AboutPage extends React.Component {
                             {splits[3]}
                         </Row>
                     </Container>
-
                     <Button>
                         Edit
                     </Button>
