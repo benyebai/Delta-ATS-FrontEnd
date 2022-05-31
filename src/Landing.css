@@ -91,7 +91,7 @@
   margin-top: 3%;
   width: 15%;
   height: 12%;
-  font-size: 1.5vw;
+  font-size: min(3vh, 1.5vw);
   font-weight: 700;
   text-align: center;
   color: white;
