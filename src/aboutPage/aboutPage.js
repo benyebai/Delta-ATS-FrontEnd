@@ -1,6 +1,7 @@
 import React from "react";
 import "./aboutPage.css";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 export class AboutPage extends React.Component {
     constructor(props) {
@@ -20,16 +21,14 @@ export class AboutPage extends React.Component {
             address: "Address",
             pronouns:"He/Him"
         }
-        
-        //temporary, will be passed down in props later
-        //likely like an id so sorta looks like 109458738
-        //this.props.user = "75937591";
+    
     }
 
     async componentDidMount(){
         await axios.post("http://localhost:3001/getUser", this.props.user)
         .then(res => {
             console.log("asd");
+            this.setState(res.data);
         })
         .catch(err => {
             console.log("this failed try again later");
@@ -41,9 +40,57 @@ export class AboutPage extends React.Component {
         Object.keys(this.state).forEach(item => {
             allInfo.push(<h1>{this.state[item]}</h1>);
         });
+
+        let contactInfo = ["firstName", "lastName", "country", "province", "city", "postalCode", "address", "pronouns","phoneNum"];
+        //this next list just contains the information in a more reader friendly way
+        let contactInfoCooler = ["First Name", "Last Name", "Country", "Province/State", "City", "Postal Code", "Address", "Pronouns", "Phone Number"];
+        let finishedInfo = []; // put finished react objects in here
+        for (let i = 0; i < contactInfo.length; i++){
+            let current = contactInfo[i];
+
+            let piece = (
+            <div className={current + " genericInfo"}>
+                <h3 className="labelText">
+                    {contactInfoCooler[i]}
+                </h3>
+                <h2 className = "infoText">
+                    {this.state[current]}
+                </h2>
+            </div>
+            );
+
+            finishedInfo.push(piece);
+        }
+
         return (
             <div>
-                {allInfo}
+                <div className = "importantInfo">
+                    <div className="genericInfo">
+                        <div className = "email"> 
+                            <h3 className="labelText">
+                                Email
+                            </h3>
+                        </div>
+
+                        <h2 className = "infoText">
+                            {this.state.email}
+                        </h2>
+
+                        <Button className = "changeEmail">
+                            Edit
+                        </Button>
+                    </div>
+                    <Button>
+                        change password
+                    </Button>
+                </div>
+
+                <div className = "Contact Info">
+                    {finishedInfo}
+                    <Button>
+                        Edit
+                    </Button>
+                </div>
             </div>
         );
     }
