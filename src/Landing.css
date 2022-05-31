@@ -12,14 +12,14 @@
   flex-direction: column;
 
   background-image: url("/public/mess.png");
-  background-size: 160%;
+  background-size: max(160vw, 160vh);
   background-position-x: center;
   background-position-y: 14vh;
   background-repeat: no-repeat;
 }
 
 .title {
-  font-size: 4.5vw;
+  font-size: max(6vh, 4.5vw);
   font-weight: 700;
 }
 
@@ -30,10 +30,11 @@
 .bottomText {
   font-size: 1.5vw;
   font-weight: 400;
+  text-align: center;
 }
 
 .titleBox {
-  width: 40%;
+  width: max(40vw, 60vh);
   text-align: center;
 }
 
@@ -77,7 +78,7 @@
 }
 
 .textButton {
-  font-size: 2vw;
+  font-size: max(2vh, 2vw);
   font-weight: 100;
   color: black;
   text-decoration: none;
@@ -91,7 +92,7 @@
   margin-top: 3%;
   width: 15%;
   height: 12%;
-  font-size: min(3vh, 1.5vw);
+  font-size: max(2vh, 1.5vw);
   font-weight: 700;
   text-align: center;
   color: white;
