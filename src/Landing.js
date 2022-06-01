@@ -1,7 +1,7 @@
 import React from "react";
 import "./Landing.css";
-import { Image } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class Landing extends React.Component {
   render() {
@@ -15,13 +15,16 @@ export default class Landing extends React.Component {
           </a>
         </div>
         <div className="nav-buttons">
-          <a href="https://www.google.com/" className="top-button text-button">
-            Register
-          </a>
-
-          <a href="/submission" className="top-button text-button">
-            Login
-          </a>
+          <Link to="/submission">
+            <Button
+              variant="danger"
+              size="lg"
+              href="/submission"
+              className="login"
+            >
+              Login | Register
+            </Button>
+          </Link>
 
           <a
             href="https://deltacontrols.com/about/"
