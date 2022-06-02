@@ -55,12 +55,12 @@ export default class Landing extends React.Component {
           <div className="divider" />
           <div className>
             <p className="bottom-text">
-              as an example: among the industries most <br />
-              respected, Delta Controls offeres you the <br />
+              As an example: among the industries most <br />
+              respected, Delta Controls offers you the <br />
               coolest career path possible
             </p>
           </div>
-          <Button variant="danger" className="register rounded-pill">
+          <Button variant="danger" size="lg" className="register">
             Apply Now
           </Button>
         </div>

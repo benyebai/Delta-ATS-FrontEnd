@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
 import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class Header extends React.Component {
     this.topBar = (
       <div>
         <div className="banner-grey">
-          <a href="/">
+          <Link to="/">
             <Image src="/DeltaLogoModified.png" className="logo-img-modified" />
-          </a>
+            </Link>
           <a href={props.href} className="nav-button">
             {props.btn}
           </a>

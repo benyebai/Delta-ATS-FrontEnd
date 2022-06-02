@@ -1,3 +1,4 @@
+
 .center {
   margin: auto;
   width: 50%;
@@ -29,7 +30,7 @@
   padding: 3%;
   border-style: groove;
   overflow: hidden;
-  min-width: 300px;
+  min-width: 250px;
 }
 
 .login-button {
@@ -44,4 +45,19 @@
 .confirmPass {
   text-align: left;
   color: red;
+}
+
+.red-border {
+  border-color: red;
+  border-style: solid;
+}
+
+.alert-badge {
+  background-color: #842029;
+}
+
+@media screen and (max-width: 900px) {
+  .form-area {
+    width: 70%;
+  }
 }

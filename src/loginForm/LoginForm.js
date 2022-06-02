@@ -1,7 +1,13 @@
 import React from "react";
 import "./LoginForm.css";
 import Header from "../components/Header";
-import { Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import {
+  Button,
+  ToggleButtonGroup,
+  ToggleButton,
+  Alert,
+  Badge,
+} from "react-bootstrap";
 import axios from "axios";
 
 class LoginForm extends React.Component {
@@ -16,6 +22,7 @@ class LoginForm extends React.Component {
       confirmPassword: "",
       isLogin: true,
       failure: "",
+      errorType: -1,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,6 +39,8 @@ class LoginForm extends React.Component {
 
   async handleLogin(e) {
     e.preventDefault();
+    
+    let self = this;
     await axios
       .post("http://localhost:3001/users/authenticate", this.state)
       .then((res) => {
@@ -42,7 +51,10 @@ class LoginForm extends React.Component {
         }
       })
       .catch((err) => {
-        console.log("error");
+        self.setState({
+          failure: "Couldn't contact server, please try again later",
+          errorType: 0,
+        });
       });
   }
 
@@ -52,6 +64,7 @@ class LoginForm extends React.Component {
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         failure: "Passwords are not matching",
+        errorType: 3,
       });
       return;
     }
@@ -59,6 +72,7 @@ class LoginForm extends React.Component {
     if (this.state.password.length < 8) {
       this.setState({
         failure: "Password needs to be at least 8 characters",
+        errorType: 2,
       });
       return;
     }
@@ -73,18 +87,22 @@ class LoginForm extends React.Component {
         } else {
           self.setState({
             failure: "Email already in use",
+            errorType: 1,
           });
           //console.log("Email already in use");
         }
       })
       .catch((res) => {
-        self.setState({ failure: "Couldn't contact server, try again later" });
+        self.setState({
+          failure: "Couldn't contact server, please try again later",
+          errorType: 0,
+        });
       });
   }
 
   render() {
     const handleToggle = (value) => {
-      this.setState({ isLogin: value });
+      this.setState({ isLogin: value, errorType: -1 });
     };
     return (
       <div>
@@ -120,12 +138,20 @@ class LoginForm extends React.Component {
               Register
             </ToggleButton>
           </ToggleButtonGroup>
+
+          <Alert show={this.state.errorType >= 0} variant="danger">
+            <Badge bg="" pill className="alert-badge">!</Badge>
+            {" "+this.state.failure}
+          </Alert>
+
           <input
             placeholder="Email"
             type="text"
             size="100px"
             onChange={this.handleChange}
-            className="textbox"
+            className={`textbox ${
+              this.state.errorType == 1 ? "red-border" : ""
+            }`}
             id="email"
           />
           <br />
@@ -134,7 +160,9 @@ class LoginForm extends React.Component {
             placeholder="Password"
             type="password"
             onChange={this.handleChange}
-            className="textbox"
+            className={`textbox ${
+              this.state.errorType >= 2 ? "red-border" : ""
+            }`}
             id="password"
           />
           <br />
@@ -145,11 +173,12 @@ class LoginForm extends React.Component {
                 placeholder="Confirm Password"
                 type="password"
                 onChange={this.handleChange}
-                className="textbox"
+                className={`textbox ${
+                  this.state.errorType == 3 ? "red-border" : ""
+                }`}
                 id="confirmPassword"
               />
               <br />
-              {this.state.failure}
             </div>
           )}
 
