@@ -153,7 +153,7 @@ export class RegisterForm extends React.Component {
               type="submit"
               variant="danger"
               onClick={this.handleSubmit}
-              className="rounded-pill login-button"
+              className="login-button"
             >
               Register
             </Button>
