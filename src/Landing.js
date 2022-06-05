@@ -16,12 +16,7 @@ export default class Landing extends React.Component {
         </div>
         <div className="nav-buttons">
           <Link to="/submission">
-            <Button
-              variant="danger"
-              size="lg"
-              href="/submission"
-              className="login"
-            >
+            <Button variant="danger" size="lg" className="login">
               Login | Register
             </Button>
           </Link>
@@ -51,9 +46,7 @@ export default class Landing extends React.Component {
           <div className="title-box">
             <h1 className="title">Catchphrase that's as long as this</h1>
           </div>
-          <div className="divider" /> <div className="divider" />{" "}
-          <div className="divider" />
-          <div className>
+          <div className="bottom-text-box">
             <p className="bottom-text">
               As an example: among the industries most <br />
               respected, Delta Controls offers you the <br />
