@@ -12,11 +12,11 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
   /* mess be gone */
-  /* background-image: url("/public/mess.png");
+  background-image: url("/public/mess.png");
   background-size: 160%;
   background-position-x: center;
   background-position-y: 14vh;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 .title-box {
