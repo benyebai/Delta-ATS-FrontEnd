@@ -1,7 +1,7 @@
 import React from "react";
 import "./Landing.css";
-import { Image } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class Landing extends React.Component {
   render() {
@@ -15,13 +15,11 @@ export default class Landing extends React.Component {
           </a>
         </div>
         <div className="nav-buttons">
-          <a href="https://www.google.com/" className="top-button text-button">
-            Register
-          </a>
-
-          <a href="/submission" className="top-button text-button">
-            Login
-          </a>
+          <Link to="/submission">
+            <Button variant="danger" size="lg" className="login">
+              Login | Register
+            </Button>
+          </Link>
 
           <a
             href="https://deltacontrols.com/about/"
@@ -48,15 +46,16 @@ export default class Landing extends React.Component {
           <div className="title-box">
             <h1 className="title">Catchphrase that's as long as this</h1>
           </div>
-          <div className="divider" /> <div className="divider" />{" "}
-          <div className>
+          <div className="bottom-text-box">
             <p className="bottom-text">
-              as an example: among the industries most <br />
-              respected, Delta Controls offeres you the <br />
+              As an example: among the industries most <br />
+              respected, Delta Controls offers you the <br />
               coolest career path possible
             </p>
           </div>
-          <button className="rounded-pill register">Apply Now</button>
+          <Button variant="danger" size="lg" className="register">
+            Apply Now
+          </Button>
         </div>
       </div>
     );

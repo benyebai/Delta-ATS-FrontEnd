@@ -1,41 +1,46 @@
 .top-part {
-  height: 20vh;
+  /* so the bar is not too big on phones */
+  height: 20vmin;
   width: 100%;
   display: flex;
 }
 
 .content {
-  height: 80vh;
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  background-image: url("/public/mess.png");
-  background-size: max(160vw, 160vh);
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  /* mess be gone */
+  /* background-image: url("/public/mess.png");
+  background-size: 160%;
   background-position-x: center;
   background-position-y: 14vh;
-  background-repeat: no-repeat;
-}
-
-.title {
-  font-size: max(6vh, 4.5vw);
-  font-weight: 700;
-}
-
-.divider {
-  height: 5vh;
-}
-
-.bottom-text {
-  font-size: max(1.8vw, 2.5vh);
-  font-weight: 200;
-  text-align: center;
+  background-repeat: no-repeat; */
 }
 
 .title-box {
-  width: max(40vw, 60vh);
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  width: 90vmin;
   text-align: center;
+}
+
+.title {
+  font-size: 10vmin;
+  font-weight: 700;
+}
+
+.bottom-text-box {
+  width: 90vmin;
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.bottom-text {
+  font-size: 3vmin;
+  font-weight: 400;
 }
 
 .logo {
@@ -79,7 +84,7 @@
 }
 
 .text-button {
-  font-size: max(2vh, 2vw);
+  font-size: 3vmin;
   font-weight: 100;
   color: black;
   text-decoration: none;
@@ -91,12 +96,16 @@
 
 .register {
   margin-top: 2vh;
-  width: max(15vw, 20vh);
-  height: 12%;
-  font-size: max(3vh, 1.5vw);
-  font-weight: 700;
+  font-size: 5vmin !important;
+  font-weight: 400 !important;
   text-align: center;
   color: white;
   background-color: #e51937;
   border: none;
+}
+
+.login {
+  margin-top: 0.5%;
+  font-weight: 400 !important;
+  font-size: 3vmin !important;
 }
