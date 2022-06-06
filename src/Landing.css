@@ -1,4 +1,4 @@
-.topPart {
+.top-part {
   height: 20vh;
   width: 100%;
   display: flex;
@@ -27,7 +27,7 @@
   height: 5vh;
 }
 
-.bottomText {
+.bottom-text {
   font-size: 1.5vw;
   font-weight: 400;
   text-align: center;
@@ -46,7 +46,7 @@
   align-items: center;
 }
 
-.logoLink {
+.logo-link {
   width: 100%;
   height: 100%;
   display: flex;
@@ -54,15 +54,16 @@
   align-items: center;
 }
 
-.logoImg {
+.logo-img {
   width: auto;
   height: auto;
   max-width: 100%;
   max-height: 80%;
+  min-height: 50px;
   margin-left: 10%;
 }
 
-.navButtons {
+.nav-buttons {
   width: 70%;
   height: 80%;
   padding-right: 3%;
@@ -72,7 +73,7 @@
   justify-content: right;
 }
 
-.topButton {
+.top-button {
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -84,7 +85,7 @@
   text-decoration: none;
 }
 
-.textButton:hover {
+.text-button:hover {
   color: black;
 }
 
