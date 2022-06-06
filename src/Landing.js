@@ -8,7 +8,7 @@ export default class Landing extends React.Component {
     //this is the stuff at the top of the entire landing page
     //just sort of made sense to make it an object of some sort so its easier to move around
     let topPart = (
-      <div className="top-part">
+      <div className="top-part" tabIndex="-1">
         <div className="logo">
           <a href="https://deltacontrols.com/" className="logo-link">
             <Image src="./DeltaLogo.png" className="logo-img" />

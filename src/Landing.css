@@ -10,7 +10,6 @@
   align-items: center;
   flex-direction: column;
   margin-top: 2vh;
-  margin-bottom: 2vh;
   /* mess be gone */
   /* background-image: url("/public/mess.png");
   background-size: 160%;
@@ -19,9 +18,52 @@
   background-repeat: no-repeat; */
 }
 
+@media screen and (min-aspect-ratio: 1/1) {
+  .content {
+    height: 78vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vh;
+    background-image: url("/public/mess.png");
+    background-size: 160%;
+    background-position-x: center;
+    background-position-y: 20vh;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (min-aspect-ratio: 7/5) {
+  .content {
+    height: 78vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vh;
+    background-image: url("/public/mess.png");
+    background-size: 160%;
+    background-position-x: center;
+    background-position-y: 17vh;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (min-aspect-ratio: 2/1) {
+  .content {
+    height: 78vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vh;
+    background-image: url("/public/mess.png");
+    background-size: 160%;
+    background-position-x: center;
+    background-position-y: 12vh;
+    background-repeat: no-repeat;
+  }
+}
+
 .title-box {
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top: 0vh;
+  margin-bottom: 5vh;
   width: 90vmin;
   text-align: center;
 }
@@ -95,7 +137,7 @@
 
 .register {
   margin-top: 2vh;
-  font-size: 5vmin !important;
+  font-size: 2rem !important;
   font-weight: 400 !important;
   text-align: center;
   color: white;
@@ -106,5 +148,5 @@
 .login {
   margin-top: 0.5%;
   font-weight: 400 !important;
-  font-size: 3vmin !important;
+  font-size: 1.3rem !important;
 }
