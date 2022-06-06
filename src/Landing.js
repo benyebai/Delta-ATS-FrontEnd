@@ -49,7 +49,6 @@ export default class Landing extends React.Component {
             <h1 className="title">Catchphrase that's as long as this</h1>
           </div>
           <div className="divider" /> <div className="divider" />{" "}
-          <div className="divider" />
           <div className>
             <p className="bottom-text">
               as an example: among the industries most <br />
@@ -57,9 +56,7 @@ export default class Landing extends React.Component {
               coolest career path possible
             </p>
           </div>
-          <Button variant="danger" className="register rounded-pill">
-            Apply Now
-          </Button>
+          <button className="rounded-pill register">Apply Now</button>
         </div>
       </div>
     );

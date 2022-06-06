@@ -28,12 +28,12 @@
 }
 
 .bottom-text {
-  font-size: 1.5vw;
-  font-weight: 400;
+  font-size: max(1.8vw, 2.5vh);
+  font-weight: 200;
   text-align: center;
 }
 
-.titleBox {
+.title-box {
   width: max(40vw, 60vh);
   text-align: center;
 }
@@ -78,7 +78,7 @@
   margin-right: 5%;
 }
 
-.textButton {
+.text-button {
   font-size: max(2vh, 2vw);
   font-weight: 100;
   color: black;
@@ -90,10 +90,10 @@
 }
 
 .register {
-  margin-top: 3%;
-  width: 15%;
+  margin-top: 2vh;
+  width: max(15vw, 20vh);
   height: 12%;
-  font-size: max(2vh, 1.5vw);
+  font-size: max(3vh, 1.5vw);
   font-weight: 700;
   text-align: center;
   color: white;
