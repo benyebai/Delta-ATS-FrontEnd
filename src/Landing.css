@@ -11,11 +11,11 @@
   flex-direction: column;
   margin-top: 2vh;
   /* mess be gone */
-  /* background-image: url("/public/mess.png");
+  background-image: url("/public/mess.png");
   background-size: 160%;
   background-position-x: center;
   background-position-y: 14vh;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 @media screen and (min-aspect-ratio: 1/1) {
@@ -106,6 +106,7 @@
   height: auto;
   max-width: 100%;
   max-height: 80%;
+  min-height: 50px;
   margin-left: 10%;
 }
 

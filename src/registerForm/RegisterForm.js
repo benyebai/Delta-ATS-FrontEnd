@@ -2,15 +2,19 @@ import React from "react";
 import Header from "../components/Header";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { Alert, Badge, Dropdown } from "react-bootstrap";
+import { countries } from "./allCountries.js";
 
 export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
 
     // ensure JSON object exists
+    /*
     if (this.props.info == null) {
       window.location.href = "/submission";
     }
+    */
     this.info = JSON.parse(this.props.info);
     this.state = {
       firstName: "",
@@ -24,9 +28,11 @@ export class RegisterForm extends React.Component {
     };
 
     // ensure JSON contains all the info
+    /*
     if (this.info.email == null || this.info.password == null) {
       window.location.href = "/submission";
     }
+    */
 
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,6 +77,16 @@ export class RegisterForm extends React.Component {
   }
 
   render() {
+    let countryDropdown = [];
+    let allCountries = [];
+    for (let key in countries) {
+      allCountries.push(countries[key]);
+    }
+
+    for (let i = 0; i < allCountries.length; i++) {
+      countryDropdown.push(<Dropdown.item></Dropdown.item>);
+    }
+
     return (
       <div>
         <Header btn="Login" href="/submission" />
@@ -146,6 +162,13 @@ export class RegisterForm extends React.Component {
             className="textbox"
           />
           <br />
+
+          <Alert show={this.state.errorType >= 0} variant="danger">
+            <Badge bg="" pill className="alert-badge">
+              !
+            </Badge>
+            {" " + this.state.failure}
+          </Alert>
 
           <div className="right-align">
             {/* This is using the pre-made button Components from Bootstrap */}
