@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Alert, Badge, Dropdown } from "react-bootstrap";
 import { countries } from "./allCountries.js";
+import "./RegisterForm.css"
 
 export class RegisterForm extends React.Component {
   constructor(props) {
@@ -84,17 +85,28 @@ export class RegisterForm extends React.Component {
     }
 
     for (let i = 0; i < allCountries.length; i++) {
-      countryDropdown.push(<Dropdown.item></Dropdown.item>);
+      countryDropdown.push(<Dropdown.Item>{allCountries[i]}</Dropdown.Item>);
     }
 
     return (
       <div>
         <Header btn="Login" href="/submission" />
+ 
 
         <form onSubmit={this.handleSubmit} className="form-area center">
           <h1>
             <b>Add Contact Info</b>
           </h1>
+
+          <Dropdown>
+            <Dropdown.Toggle className = "droppppp">
+              Button
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{overflowY: 'scroll', maxHeight: "50vh"}}>
+              {countryDropdown}
+            </Dropdown.Menu>
+          </Dropdown>
+
           <input
             placeholder="First Name"
             type="text"
