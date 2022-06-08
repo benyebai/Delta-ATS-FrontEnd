@@ -77,4 +77,21 @@
 .textform {
   width: 100%;
   margin-top: 1vw;
+  font-size: 1.5vw;
+  padding: 0;
+  padding-left: 0.5vw;
+  border: solid black 1px;
+}
+
+.country-button {
+  width: 100%;
+  margin-top: 1vw;
+  font-size: 1.5vw !important;
+  padding: 0 !important ;
+  padding-left: 0.5vw !important;
+  border: solid black 1px;
+}
+
+.country-box {
+  margin: 0;
 }

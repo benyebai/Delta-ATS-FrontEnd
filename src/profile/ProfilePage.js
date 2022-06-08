@@ -42,7 +42,7 @@ export class ProfilePage extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.buttonPress = this.buttonPress.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleCountryChange = this.handleCountryChange(this);
+    this.handleCountryChange = this.handleCountryChange.bind(this);
     this.render = this.render.bind(this);
   }
 
@@ -50,11 +50,10 @@ export class ProfilePage extends React.Component {
     await axios
       .post("http://localhost:3001/getUser", this.props.user)
       .then((res) => {
-        console.log("asd");
         this.setState(res.data);
       })
       .catch((err) => {
-        console.log("this failed try again later");
+        console.log("failed to connect to server try again later");
       });
   }
 
@@ -66,8 +65,7 @@ export class ProfilePage extends React.Component {
   }
 
   handleCountryChange(e) {
-    console.log("asd");
-    //this.setState({ country: e });
+    this.setState({ country: e });
   }
 
   async buttonPress(pressed) {
@@ -123,7 +121,7 @@ export class ProfilePage extends React.Component {
         address: this.state.address,
       };
       let worked = doesInfoWork(toSend);
-      console.log(worked);
+
       if (worked !== "success") {
         this.setState({
           failure: worked,
@@ -201,13 +199,11 @@ export class ProfilePage extends React.Component {
 
           for (let key in countries) {
             countryDropdown.push(
-              <Dropdown.Item eventKey={countries[key]}>
+              <Dropdown.Item eventKey={countries[key]} key={key}>
                 {countries[key]}
               </Dropdown.Item>
             );
           }
-
-          console.log(countryDropdown);
 
           toPut = (
             <Dropdown
