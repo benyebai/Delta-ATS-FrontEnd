@@ -296,6 +296,7 @@ export class ProfilePage extends React.Component {
               >
                 {this.state.changingEmail ? "Save" : "Edit"}
               </Button>
+              <span style={{ width: "2vmin" }}></span>
               <Button className="changeButton" variant="danger">
                 Change Password
               </Button>
