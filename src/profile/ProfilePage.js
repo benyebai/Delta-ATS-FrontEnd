@@ -290,13 +290,13 @@ export class ProfilePage extends React.Component {
             </div>
             <div className="changeButtons">
               <Button
-                className="changeButton Email"
+                className="changeButton"
                 variant="danger"
                 onClick={() => this.buttonPress("changingEmail")}
               >
                 {this.state.changingEmail ? "Save" : "Edit"}
               </Button>
-              <Button className="changeButton Password" variant="danger">
+              <Button className="changeButton" variant="danger">
                 Change Password
               </Button>
             </div>
@@ -324,6 +324,7 @@ export class ProfilePage extends React.Component {
                 <Button
                   variant="danger"
                   onClick={() => this.buttonPress("changingContact")}
+                  className="changeButton"
                 >
                   {this.state.changingContact ? "Save" : "Edit"}
                 </Button>

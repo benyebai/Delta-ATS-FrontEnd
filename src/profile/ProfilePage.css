@@ -45,7 +45,8 @@
   width: 100%;
 }
 .changeButton {
-  margin: 1vw;
+  font-size: 2vmin !important;
+  padding: 1vmin !important;
 }
 
 .contactInfo {
