@@ -1,17 +1,25 @@
 import "./App.css";
-import LoginForm from "./LoginForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
+import { RegisterLog } from "./RegisterAndLog.js";
+import { ProfilePage } from "./profile/ProfilePage.js";
+
+/* on the off chance that any other people come after us
+we gotta say we have no fucking clue what were doing lmao
+
+we used a fair bit of react bootstrap so make sure to read on that
+react router was used to sort our info
+please fix the landing page
+*/
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route index element={<Landing />} />
-            <Route path="login" element={<LoginForm />} />
-          </Route>
+          <Route index element={<Landing />} />
+          <Route path="/submission/*" element={<RegisterLog />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>
