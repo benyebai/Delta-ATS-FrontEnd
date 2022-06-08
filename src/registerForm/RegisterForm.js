@@ -61,9 +61,13 @@ export class RegisterForm extends React.Component {
     await axios
       .post("http://localhost:3001/users/create", toSend)
       .then((res) => {
-        console.log("Success, a new account has been created");
+
+        console.log(res)
+        console.log("Success!")
       })
       .catch((err) => {
+        console.log("ERR")
+        console.log(err.response.data.errors)
         console.log(
           "An error occured when creating the account. Please try again later."
         );
