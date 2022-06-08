@@ -103,12 +103,9 @@ export class RegisterForm extends React.Component {
     super(props);
 
     // ensure JSON object exists
-
-    /*
-    if (this.props.info == null) {
+    if (!this.props.info) {
       window.location.href = "/submission";
     }
-    */
 
     this.info = JSON.parse(this.props.info);
     this.state = {
@@ -126,12 +123,9 @@ export class RegisterForm extends React.Component {
     };
 
     // ensure JSON contains all the info
-
-    /*
-    if (this.info.email == null || this.info.password == null) {
+    if (!this.info.email && !this.info.password) {
       window.location.href = "/submission";
     }
-    */
 
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -172,13 +166,12 @@ export class RegisterForm extends React.Component {
     await axios
       .post("http://localhost:3001/users/create", toSend)
       .then((res) => {
-
-        console.log(res)
-        console.log("Success!")
+        console.log(res);
+        console.log("Success!");
       })
       .catch((err) => {
-        console.log("ERR")
-        console.log(err.response.data.errors)
+        console.log("ERR");
+        console.log(err.response.data.errors);
         console.log(
           "An error occured when creating the account. Please try again later."
         );
