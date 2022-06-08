@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
 import { RegisterLog } from "./RegisterAndLog.js";
-import { AboutPage } from "./aboutPage/aboutPage";
+import { ProfilePage } from "./profile/ProfilePage.js";
 
 /* on the off chance that any other people come after us
 we gotta say we have no fucking clue what were doing lmao
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route index element={<Landing />} />
           <Route path="/submission/*" element={<RegisterLog />} />
-          <Route path = "/profile" element = {<AboutPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>

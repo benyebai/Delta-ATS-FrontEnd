@@ -1,5 +1,5 @@
 import React from "react";
-import "./aboutPage.css";
+import "./ProfilePage.css";
 import axios from "axios";
 import {
   Button,
@@ -15,7 +15,7 @@ import Header from "../components/Header";
 import { doesInfoWork } from "../registerForm/RegisterForm.js";
 import { countries } from "../registerForm/allCountries";
 
-export class AboutPage extends React.Component {
+export class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -43,6 +43,7 @@ export class AboutPage extends React.Component {
     this.buttonPress = this.buttonPress.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleCountryChange = this.handleCountryChange(this);
+    this.render = this.render.bind(this);
   }
 
   async componentDidMount() {
@@ -65,7 +66,8 @@ export class AboutPage extends React.Component {
   }
 
   handleCountryChange(e) {
-    this.setState({ country: e });
+    console.log("asd");
+    //this.setState({ country: e });
   }
 
   async buttonPress(pressed) {
