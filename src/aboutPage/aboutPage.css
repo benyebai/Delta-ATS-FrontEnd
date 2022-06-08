@@ -1,0 +1,31 @@
+.genericInfo{
+    margin: 2vw;
+    text-align: left;
+}
+
+.labelText{
+    font-size: 1.5vw;
+    font-weight: 700;
+    margin-bottom:0.3vw;
+}
+
+.infoText{
+    font-size: 2vw;
+    font-weight: 200;
+    margin:0;
+}
+
+
+.bordered{
+    border: solid black 1px
+}
+.changeButtons{
+    display: flex;
+}
+.changeButton{
+    margin-left: 2vw;
+}
+
+.contactInfo{
+    margin-top: 7vw;
+}
