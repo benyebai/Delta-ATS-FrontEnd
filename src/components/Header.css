@@ -1,0 +1,40 @@
+.banner-grey {
+  width: 100vw;
+  height: 7vh;
+  /*background-image: url("/public/header.svg"); */
+  background-image: linear-gradient(to right, #c7c7c7, white);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.banner-red {
+  width: 100vw;
+  height: 3vh;
+  /*background-image: url("/public/header.svg"); */
+  background-image: linear-gradient(to right, #e51937, white);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.nav-button {
+  display: block;
+  float: right;
+  font-size: 3vh;
+  color: #000;
+  text-decoration: none;
+  margin-top: 1.3vh;
+  margin-right: 3vw;
+}
+
+.nav-button:hover {
+  color: black;
+}
+
+.logo-img-modified {
+  display: block;
+  float: left;
+  /* So "controls" is displayed on the gray stripe */
+  height: 9.77vh;
+  width: auto;
+  margin-left: 1vw;
+}
