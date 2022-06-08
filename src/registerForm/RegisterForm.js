@@ -62,31 +62,31 @@ export class RegisterForm extends React.Component {
 
     let toSend = this.state;
 
-    if(toSend.firstName == "" || toSend.lastName == ""){
+    if(toSend.firstName === "" || toSend.lastName === ""){
       this.setState({failure: "Please enter in a Full Name"});
       return;
     } 
-    if(toSend.country == ""){
+    if(toSend.country === ""){
       this.setState({failure: "Please enter in a country"});
       return;
     }
-    if(toSend.province == ""){
+    if(toSend.province === ""){
       this.setState({failure: "Please enter in a Province/State"});
       return;
     }
-    if(toSend.city == ""){
+    if(toSend.city === ""){
       this.setState({failure: "Please enter in a city"});
       return;
     }
-    if(toSend.postalCode == ""){
+    if(toSend.postalCode === ""){
       this.setState({failure: "Please enter in a Postal Code"});
       return;
     }
-    if(toSend.address == ""){
+    if(toSend.address === ""){
       this.setState({failure: "Please enter an address"});
       return;
     }
-    if(toSend.phoneNum == ""){
+    if(toSend.phoneNum === ""){
       this.setState({failure: "Please enter in a phone number"});
       return;
     }    
@@ -99,7 +99,7 @@ export class RegisterForm extends React.Component {
     let failedZip = false;
     let code = toSend.postalCode
     console.log(toSend.country)
-    if(toSend.country == "Canada"){
+    if(toSend.country === "Canada"){
       if(code.length < 6){
         failedZip = true;
       }
@@ -112,13 +112,13 @@ export class RegisterForm extends React.Component {
       }
 
       for(let i = 0; i < 6; i++){
-        if(i % 2 == 0){
+        if(i % 2 === 0){
           if(!code.slice(i,i+1).match("[a-zA-Z]+")){
             failedZip = true;
             break;
           }
         }
-        else if (i % 2 == 1){
+        else if (i % 2 === 1){
           if(isNaN(code.slice(i,i+1))){
             failedZip = true;
             break;
@@ -126,8 +126,8 @@ export class RegisterForm extends React.Component {
         }
       }
     }
-    else if(toSend.country == "United States"){
-      if(code.length == 10){
+    else if(toSend.country === "United States"){
+      if(code.length === 10){
         failedZip = true;
         //its either 11111-1111
         //or 1111-11111
@@ -143,12 +143,12 @@ export class RegisterForm extends React.Component {
         let lFour = code.slice(6,10);
         
 
-        if(/^\d+$/.test(fFour) && fifth == "-" && /^\d+$/.test(lFive)){
+        if(/^\d+$/.test(fFour) && fifth === "-" && /^\d+$/.test(lFive)){
           //youre good, do nothing
           failedZip = false;
         }
         
-        else if(/^\d+$/.test(fFive) && sixth == "-" && /^\d+$/.test(lFour)){
+        else if(/^\d+$/.test(fFive) && sixth === "-" && /^\d+$/.test(lFour)){
           //youre good, do nothing
           failedZip = false;
         }
@@ -237,11 +237,11 @@ export class RegisterForm extends React.Component {
 
     );
 
-    if(this.state.country == "Canada"){
+    if(this.state.country === "Canada"){
       provinceObj = (          
       <Dropdown className = "country-box" onSelect = {this.handleProvinceChange}>
-        <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.province == "" ? "#8d8d8d" : "black"}}>
-          {this.state.province == "" ? "Province" : this.state.province}
+        <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.province === "" ? "#8d8d8d" : "black"}}>
+          {this.state.province === "" ? "Province" : this.state.province}
         </Dropdown.Toggle>
         <Dropdown.Menu style={{overflowY: 'scroll', maxHeight: "50vh", "width" : "100%"}}>
           {provinceDropdown}
@@ -249,11 +249,11 @@ export class RegisterForm extends React.Component {
       </Dropdown>
     );
     }
-    if(this.state.country == "United States"){
+    if(this.state.country === "United States"){
       provinceObj = (          
         <Dropdown className = "country-box" onSelect = {this.handleProvinceChange}>
-          <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.province == "" ? "#8d8d8d" : "black"}}>
-            {this.state.province == "" ? "State" : this.state.province}
+          <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.province === "" ? "#8d8d8d" : "black"}}>
+            {this.state.province === "" ? "State" : this.state.province}
           </Dropdown.Toggle>
           <Dropdown.Menu style={{overflowY: 'scroll', maxHeight: "50vh", "width" : "100%"}}>
             {stateDropdown}
@@ -292,8 +292,8 @@ export class RegisterForm extends React.Component {
           
 
           <Dropdown className = "country-box" onSelect = {this.handleCountryChange}>
-            <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.country == "" ? "#8d8d8d" : "black"}}>
-              {this.state.country == "" ? "Country" : this.state.country}
+            <Dropdown.Toggle bsPrefix = "country-button" style = {{"color" : this.state.country === "" ? "#8d8d8d" : "black"}}>
+              {this.state.country === "" ? "Country" : this.state.country}
             </Dropdown.Toggle>
             <Dropdown.Menu style={{overflowY: 'scroll', maxHeight: "50vh", "width" : "100%"}}>
               {countryDropdown}
