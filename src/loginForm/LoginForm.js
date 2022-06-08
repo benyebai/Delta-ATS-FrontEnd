@@ -77,6 +77,30 @@ class LoginForm extends React.Component {
       return;
     }
 
+    if(this.state.password.toLowerCase() == this.state.password){
+      this.setState({
+        failure: "Password nees at least 1 capital letter",
+        errorType: 2,
+      });
+      return;
+    }
+
+    if(!(/\d/.test(this.state.password))){
+      this.setState({
+        failure: "Password nees at least 1 number",
+        errorType: 2,
+      });
+      return;
+    }
+
+    if(this.state.email.indexOf("@") == -1 || this.state.email.indexOf(".") == -1){
+      this.setState({
+        failure: "Please enter a valid email",
+        errorType: 1,
+      });
+      return;
+    }
+
     let self = this;
     axios
       .post("http://localhost:3001/users/checkValidEmail", this.state)
