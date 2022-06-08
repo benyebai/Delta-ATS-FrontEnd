@@ -39,7 +39,17 @@ class LoginForm extends React.Component {
 
   async handleLogin(e) {
     e.preventDefault();
-    
+
+    if (!this.state.email) {
+      this.setState({ failure: "Please enter an email", errorType: 1 });
+      return;
+    }
+
+    if (!this.state.password) {
+      this.setState({ failure: "Please enter a password", errorType: 2 });
+      return;
+    }
+
     let self = this;
     await axios
       .post("http://localhost:3001/users/authenticate", this.state)
@@ -47,7 +57,10 @@ class LoginForm extends React.Component {
         if (res.data.length > 0) {
           alert("success");
         } else {
-          alert("password and email not matching");
+          self.setState({
+            failure: "Invalid email or password",
+            errorType: -1,
+          });
         }
       })
       .catch((err) => {
@@ -58,9 +71,20 @@ class LoginForm extends React.Component {
       });
   }
 
-  //TODO?: Prevent invalid emails
   handleContinue(e) {
     e.preventDefault();
+
+    if (
+      this.state.email.indexOf("@") === -1 ||
+      this.state.email.indexOf(".") === -1
+    ) {
+      this.setState({
+        failure: "Please enter a valid email",
+        errorType: 1,
+      });
+      return;
+    }
+
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         failure: "Passwords are not matching",
@@ -71,32 +95,24 @@ class LoginForm extends React.Component {
 
     if (this.state.password.length < 8) {
       this.setState({
-        failure: "Password needs to be at least 8 characters",
+        failure: "Password must be at least 8 characters",
         errorType: 2,
       });
       return;
     }
 
-    if(this.state.password.toLowerCase() === this.state.password){
+    if (this.state.password.toLowerCase() === this.state.password) {
       this.setState({
-        failure: "Password needs at least 1 capital letter",
+        failure: "Password must contain at least 1 capital letter",
         errorType: 2,
       });
       return;
     }
 
-    if(!(/\d/.test(this.state.password))){
+    if (!/\d/.test(this.state.password)) {
       this.setState({
-        failure: "Password needs at least 1 number",
+        failure: "Password must contain at least 1 number",
         errorType: 2,
-      });
-      return;
-    }
-
-    if(this.state.email.indexOf("@") === -1 || this.state.email.indexOf(".") === -1){
-      this.setState({
-        failure: "Please enter a valid email",
-        errorType: 1,
       });
       return;
     }
@@ -164,14 +180,17 @@ class LoginForm extends React.Component {
           </ToggleButtonGroup>
 
           <Alert show={this.state.errorType >= 0} variant="danger">
-            <Badge bg="" pill className="alert-badge">!</Badge>
-            {" "+this.state.failure}
+            <Badge bg="" pill className="alert-badge">
+              !
+            </Badge>
+            {" " + this.state.failure}
           </Alert>
 
           <input
             placeholder="Email"
             type="text"
             size="100px"
+            maxlength="320"
             onChange={this.handleChange}
             className={`textbox ${
               this.state.errorType === 1 ? "red-border" : ""
@@ -183,6 +202,7 @@ class LoginForm extends React.Component {
           <input
             placeholder="Password"
             type="password"
+            maxlength="100"
             onChange={this.handleChange}
             className={`textbox ${
               this.state.errorType >= 2 ? "red-border" : ""
@@ -196,6 +216,7 @@ class LoginForm extends React.Component {
               <input
                 placeholder="Confirm Password"
                 type="password"
+                maxlength="100"
                 onChange={this.handleChange}
                 className={`textbox ${
                   this.state.errorType === 3 ? "red-border" : ""
