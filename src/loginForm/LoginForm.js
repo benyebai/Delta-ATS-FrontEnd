@@ -77,9 +77,9 @@ class LoginForm extends React.Component {
       return;
     }
 
-    if(this.state.password.toLowerCase() == this.state.password){
+    if(this.state.password.toLowerCase() === this.state.password){
       this.setState({
-        failure: "Password nees at least 1 capital letter",
+        failure: "Password needs at least 1 capital letter",
         errorType: 2,
       });
       return;
@@ -87,13 +87,13 @@ class LoginForm extends React.Component {
 
     if(!(/\d/.test(this.state.password))){
       this.setState({
-        failure: "Password nees at least 1 number",
+        failure: "Password needs at least 1 number",
         errorType: 2,
       });
       return;
     }
 
-    if(this.state.email.indexOf("@") == -1 || this.state.email.indexOf(".") == -1){
+    if(this.state.email.indexOf("@") === -1 || this.state.email.indexOf(".") === -1){
       this.setState({
         failure: "Please enter a valid email",
         errorType: 1,
@@ -174,7 +174,7 @@ class LoginForm extends React.Component {
             size="100px"
             onChange={this.handleChange}
             className={`textbox ${
-              this.state.errorType == 1 ? "red-border" : ""
+              this.state.errorType === 1 ? "red-border" : ""
             }`}
             id="email"
           />
@@ -198,7 +198,7 @@ class LoginForm extends React.Component {
                 type="password"
                 onChange={this.handleChange}
                 className={`textbox ${
-                  this.state.errorType == 3 ? "red-border" : ""
+                  this.state.errorType === 3 ? "red-border" : ""
                 }`}
                 id="confirmPassword"
               />
