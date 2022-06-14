@@ -32,6 +32,7 @@
   font-size: 1.3vmax;
   font-weight: 200;
   text-overflow: ellipsis;
+  margin-bottom: 1vw;
 }
 
 .bordered {

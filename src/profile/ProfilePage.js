@@ -142,6 +142,7 @@ export class ProfilePage extends React.Component {
             this.setState({
               failure: "",
               failWhere: 0,
+              changingContact: false,
             });
           } else {
             this.setState({
@@ -152,9 +153,10 @@ export class ProfilePage extends React.Component {
         })
 
         .catch((err) => {
+          console.log("asd");
           this.setState({
             failure: "Could not contact server, try again later",
-            failWhere: 1,
+            failWhere: 2,
           });
         });
     }
