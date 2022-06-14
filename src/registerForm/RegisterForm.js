@@ -102,10 +102,12 @@ export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
 
+    /*
     // ensure JSON object exists
     if (!this.props.info) {
       window.location.href = "/submission";
     }
+    */
 
     this.info = JSON.parse(this.props.info);
     this.state = {
@@ -122,10 +124,12 @@ export class RegisterForm extends React.Component {
       failure: "",
     };
 
+    /*
     // ensure JSON contains all the info
     if (!this.info.email && !this.info.password) {
       window.location.href = "/submission";
     }
+    */
 
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

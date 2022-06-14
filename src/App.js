@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
-import { RegisterLog } from "./RegisterAndLog.js";
+import {RegisterLog} from "./RegisterAndLog"
 import { ProfilePage } from "./profile/ProfilePage.js";
 
 /* on the off chance that any other people come after us
