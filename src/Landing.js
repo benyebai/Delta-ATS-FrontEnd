@@ -53,9 +53,11 @@ export default class Landing extends React.Component {
               coolest career path possible
             </p>
           </div>
-          <Button variant="danger" size="lg" className="register">
-            Apply Now
-          </Button>
+          <Link to="/submission">
+            <Button variant="danger" size="lg" className="register">
+              Apply Now
+            </Button>
+          </Link>
         </div>
       </div>
     );
