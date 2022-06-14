@@ -166,8 +166,8 @@ export class RegisterForm extends React.Component {
     await axios
       .post("http://localhost:3001/users/create", toSend)
       .then((res) => {
-        console.log(res);
-        console.log("Success!");
+        window.sessionStorage.setItem("accessToken", res.data.accessToken);
+        window.location.href = "/profile";
       })
       .catch((err) => {
         console.log("ERR");
