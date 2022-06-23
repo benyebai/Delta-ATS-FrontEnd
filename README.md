@@ -11,7 +11,7 @@ This project is made with React and uses react-bootstrap components and css for 
 3. Clone the Delta Delta-ATS-FrontEnd repository from github\
 4. After pulling the most recent changes, run:
 ### `npm install`
-in the project directory to install any new modules and dependencies
+in the project directory to install any new modules and dependencies.
 
 ## Usage
 
