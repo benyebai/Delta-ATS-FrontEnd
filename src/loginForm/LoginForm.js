@@ -55,7 +55,9 @@ class LoginForm extends React.Component {
       .post("http://localhost:3001/users/authenticate", this.state)
       .then((res) => {
         if (res.data.length > 0) {
-          alert("success");
+          window.sessionStorage.setItem("accessToken", res.data.accessToken);
+          window.location.href = "/profile";
+
         } else {
           self.setState({
             failure: "Invalid email or password",

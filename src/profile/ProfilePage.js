@@ -48,9 +48,14 @@ export class ProfilePage extends React.Component {
 
   async componentDidMount() {
     await axios
-      .post("http://localhost:3001/getUser", this.props.user)
+      .post("http://localhost:3001/users/userInfo", {token: window.sessionStorage.getItem("accessToken")})
       .then((res) => {
-        this.setState(res.data);
+        res.data.data[1][0].firstName = res.data.data[1][0]['first_name']
+        res.data.data[1][0].lastName = res.data.data[1][0]['last_name']
+        res.data.data[0][0].phoneNum = res.data.data[0][0]['phone_number']
+        res.data.data[0][0].postalCode = res.data.data[0][0]['postal_code']
+        this.setState(res.data.data[0][0]);
+        this.setState(res.data.data[1][0]);
       })
       .catch((err) => {
         console.log("failed to connect to server try again later");
@@ -87,7 +92,7 @@ export class ProfilePage extends React.Component {
       };
 
       await axios
-        .post("http://localhost:3001/getUser", toSend)
+        .post("http://localhost:3001/modify", toSend)
         .then((res) => {
           if (res.data) {
             this.setState({
@@ -131,12 +136,13 @@ export class ProfilePage extends React.Component {
       }
 
       await axios
-        .post("http://localhost:3001/getUser", toSend)
+        .post("http://localhost:3001/modify", toSend)
         .then((res) => {
           if (res.data) {
             this.setState({
               failure: "",
               failWhere: 0,
+              changingContact: false,
             });
           } else {
             this.setState({
@@ -147,9 +153,10 @@ export class ProfilePage extends React.Component {
         })
 
         .catch((err) => {
+          console.log("asd");
           this.setState({
             failure: "Could not contact server, try again later",
-            failWhere: 1,
+            failWhere: 2,
           });
         });
     }
@@ -191,7 +198,7 @@ export class ProfilePage extends React.Component {
       }
 
       let current = contactInfo[i];
-      let toPut = <h2 className="infoText">{this.state[current]}</h2>;
+      let toPut = <h2 className="info-text">{this.state[current]}</h2>;
 
       if (this.state.changingContact) {
         if (current === "country") {
@@ -247,8 +254,8 @@ export class ProfilePage extends React.Component {
 
       let piece = (
         <Col lg={true}>
-          <div className={current + " genericInfo"}>
-            <h3 className="labelText">{contactInfoCooler[i]}</h3>
+          <div className={current + " generic-info"}>
+            <h3 className="label-text">{contactInfoCooler[i]}</h3>
             {toPut}
           </div>
         </Col>
@@ -273,7 +280,7 @@ export class ProfilePage extends React.Component {
     return (
       <div>
         <Header />
-        <div className="profileContainer">
+        <div className="profile-container">
           <div className="important-info">
             <Image
               src="https://assets.bonappetit.com/photos/57aca47753e63daf11a4d904/1:1/w_2807,h_2807,c_limit/watermelon-with-yogurt-and-fried-rosemary.jpg"
@@ -281,29 +288,29 @@ export class ProfilePage extends React.Component {
               className="profile-pic"
               roundedCircle
             />
-            <div className="emailInfo emailText">
+            <div className="email-info email-text">
               <div className="generic">
-                <h3 className="labelText">Email</h3>
+                <h3 className="label-text">Email</h3>
               </div>
 
               {this.state.changingEmail ? emailEditing : this.state.email}
             </div>
-            <div className="changeButtons">
+            <div className="change-buttons">
               <Button
-                className="changeButton"
+                className="change-button"
                 variant="danger"
-                onClick={() => this.buttonPress("changingEmail")}
+                onClick={() => this.buttonPress("changing-email")}
               >
                 {this.state.changingEmail ? "Save" : "Edit"}
               </Button>
               <span style={{ width: "2vmin" }}></span>
-              <Button className="changeButton" variant="danger">
+              <Button className="change-button" variant="danger">
                 Change Password
               </Button>
             </div>
           </div>
 
-          <div className="contactInfo">
+          <div className="contact-info">
             <Container>
               <Row>{splits[0]}</Row>
               <Row>{splits[1]}</Row>
@@ -325,7 +332,7 @@ export class ProfilePage extends React.Component {
                 <Button
                   variant="danger"
                   onClick={() => this.buttonPress("changingContact")}
-                  className="changeButton"
+                  className="change-button"
                 >
                   {this.state.changingContact ? "Save" : "Edit"}
                 </Button>
