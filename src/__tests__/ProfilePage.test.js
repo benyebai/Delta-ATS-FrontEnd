@@ -5,8 +5,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-jest.mock("axios");
-
 it("renders without crashing", () => {
     const div = document.createElement("div");
     const root = ReactDOM.createRoot(div);
