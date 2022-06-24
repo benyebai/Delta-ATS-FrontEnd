@@ -13,6 +13,7 @@ it("renders without crashing", () => {
     root.render(<ProfilePage />);
   });
 
+  
 it("Buttons renders properly", async () => {
     render(<BrowserRouter><ProfilePage/></BrowserRouter>);
 
