@@ -7,8 +7,6 @@ import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 
-jest.mock("axios");
-
 it("renders without crashing", () => {
   const div = document.createElement("div");
   const root = ReactDOM.createRoot(div);
