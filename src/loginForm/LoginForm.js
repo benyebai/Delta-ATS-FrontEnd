@@ -255,7 +255,7 @@ class LoginForm extends React.Component {
               }
               className="login-button right-align"
             >
-              {this.state.isLogin ? "Login" : "Continue"}
+              {this.state.isLogin ? "Log in" : "Continue"}
             </Button>
           </div>
         </form>
