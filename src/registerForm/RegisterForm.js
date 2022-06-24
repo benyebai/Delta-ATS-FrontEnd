@@ -9,6 +9,8 @@ import "./RegisterForm.css";
 /*
  * Second step to registration process
  * Lets user input rest of information
+ * exported as it is used in other components, such as the profile page
+ * outputs the text that you want displayed when it fails/works
  */
 export function doesInfoWork(info) {
   let toSend = info;
@@ -53,12 +55,16 @@ export function doesInfoWork(info) {
     }
 
     for (let i = 0; i < 6; i++) {
+      //canadian zip codes alternate between letter anbd number
+      //a1a1a1 like that
       if (i % 2 === 0) {
+        //if current is not letter
         if (!code.slice(i, i + 1).match("[a-zA-Z]+")) {
           failedZip = true;
           break;
         }
       } else if (i % 2 === 1) {
+        //if current is not number
         if (isNaN(code.slice(i, i + 1))) {
           failedZip = true;
           break;
@@ -74,7 +80,9 @@ export function doesInfoWork(info) {
 
       // This means first four
       let fFour = code.slice(0, 4);
+      //hyphen
       let fifth = code.slice(4, 5);
+      //last 5
       let lFive = code.slice(5, 10);
 
       let fFive = code.slice(0, 5);
@@ -106,7 +114,7 @@ export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
 
-    // ensure JSON object exists
+    // ensure JSON object first exists
     if (!this.props.info) {
       window.location.href = "/submission";
     }
@@ -131,6 +139,7 @@ export class RegisterForm extends React.Component {
       window.location.href = "/submission";
     }
 
+    //binding the things that needs to use the this keyword
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCountryChange = this.handleCountryChange.bind(this);
@@ -142,11 +151,13 @@ export class RegisterForm extends React.Component {
   }
 
   handleCountryChange(e) {
+    //seperate from handle text change as you need to use a dropdown menu
+    //resets the province since chaning a country means the provinces will too
     this.setState({ country: e, province: "" });
   }
 
   handleProvinceChange(e) {
-    console.log("asd");
+    //uses a dropdown so text change is different
     this.setState({ province: e });
   }
 
@@ -165,11 +176,12 @@ export class RegisterForm extends React.Component {
     toSend.email = this.info.email;
     toSend.password = this.info.password;
 
-    console.log(toSend);
-
+    
+    
     await axios
       .post("http://localhost:3001/users/create", toSend)
       .then((res) => {
+        //set token once we submit successfully
         window.sessionStorage.setItem("accessToken", res.data.accessToken);
         window.location.href = "/profile";
       })
@@ -268,6 +280,7 @@ export class RegisterForm extends React.Component {
       "Yukon Territory",
     ];
 
+    //items that you put inside the dropdown menu
     for (let i = 0; i < allCountries.length; i++) {
       countryDropdown.push(
         <Dropdown.Item eventKey={allCountries[i]}>
@@ -276,12 +289,14 @@ export class RegisterForm extends React.Component {
       );
     }
 
+    //for the united states dropdown for states
     for (let i = 0; i < allStates.length; i++) {
       stateDropdown.push(
         <Dropdown.Item eventKey={allStates[i]}>{allStates[i]}</Dropdown.Item>
       );
     }
 
+    //for canada dropdown for provicnes
     for (let i = 0; i < allProvinces.length; i++) {
       provinceDropdown.push(
         <Dropdown.Item eventKey={allProvinces[i]}>
@@ -290,6 +305,7 @@ export class RegisterForm extends React.Component {
       );
     }
 
+    //a textbox is shown when the country is not the US or Canada
     let provinceObj = (
       <div>
         <input
@@ -302,6 +318,7 @@ export class RegisterForm extends React.Component {
       </div>
     );
 
+    
     if (this.state.country === "Canada") {
       provinceObj = (
         <Dropdown className="country-box" onSelect={this.handleProvinceChange}>

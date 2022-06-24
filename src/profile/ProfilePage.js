@@ -47,11 +47,14 @@ export class ProfilePage extends React.Component {
   }
 
   async componentDidMount() {
+
+    //get user info
     await axios
       .post("http://localhost:3001/users/userInfo", {
         token: window.sessionStorage.getItem("accessToken"),
       })
       .then((res) => {
+        //reformat the info that you get from the server
         res.data.data[1][0].firstName = res.data.data[1][0]["first_name"];
         res.data.data[1][0].lastName = res.data.data[1][0]["last_name"];
         res.data.data[0][0].phoneNum = res.data.data[0][0]["phone_number"];
@@ -82,26 +85,33 @@ export class ProfilePage extends React.Component {
         return;
       }
     }
+    //change from edit to not edit or vice versa
     this.setState((prevState) => ({
       [pressed]: !prevState[pressed],
     }));
   }
 
   async handleSave(which) {
+
+    //if we tried to save the email
     if (which === "changingEmail") {
+      //format the stuff we want to change
       let toSend = {
         email: this.state.email,
       };
 
+      //send info
       await axios
         .post("http://localhost:3001/modify", toSend)
         .then((res) => {
           if (res.data) {
+            //if it worked, then remove the failure stuff
             this.setState({
               failure: "",
               failWhere: 0,
             });
           } else {
+            //otherwise email is alredadu in use so ytou cant change it
             this.setState({
               failure: "Email already in use",
               failWhere: 1,
@@ -115,6 +125,7 @@ export class ProfilePage extends React.Component {
           });
         });
     } else if (which === "changingContact") {
+      //if were changing contact info, format the stuff we plan on sending
       let toSend = {
         email: this.state.email,
         password: this.state.password,
@@ -127,6 +138,7 @@ export class ProfilePage extends React.Component {
         postalCode: this.state.postalCode,
         address: this.state.address,
       };
+      //check if the info is properly formatted, such as phone num having all numbers
       let worked = doesInfoWork(toSend);
 
       if (worked !== "success") {
@@ -146,12 +158,7 @@ export class ProfilePage extends React.Component {
               failWhere: 0,
               changingContact: false,
             });
-          } else {
-            this.setState({
-              failure: "Email already in use",
-              failWhere: 1,
-            });
-          }
+          } 
         })
 
         .catch((err) => {
@@ -166,6 +173,7 @@ export class ProfilePage extends React.Component {
 
   render() {
     let allInfo = [];
+    //push stuff into the info we want to show on the right
     Object.keys(this.state).forEach((item) => {
       allInfo.push(<h1>{this.state[item]}</h1>);
     });

@@ -44,6 +44,8 @@ class LoginForm extends React.Component {
   async handleLogin(e) {
     e.preventDefault();
 
+    //failure is the message that is displayed on fail
+    //errorType is which textfield is highlighted when you fail
     if (!this.state.email) {
       this.setState({ failure: "Please enter an email", errorType: 1 });
       return;
@@ -54,11 +56,13 @@ class LoginForm extends React.Component {
       return;
     }
 
+    //test if email and password match up in server
     let self = this;
     await axios
       .post("http://localhost:3001/users/authenticate", this.state)
       .then((res) => {
         if (res.data.length > 0) {
+          //if it works, set our accessToken
           window.sessionStorage.setItem("accessToken", res.data.accessToken);
           window.location.href = "/profile";
         } else {
@@ -78,6 +82,7 @@ class LoginForm extends React.Component {
 
   handleContinue(e) {
     e.preventDefault();
+    //test email, check if it has a @ and a .
     if (
       this.state.email.indexOf("@") === -1 ||
       this.state.email.indexOf(".") === -1
@@ -89,6 +94,7 @@ class LoginForm extends React.Component {
       return;
     }
 
+    //test if passwords match
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         failure: "Passwords are not matching",
@@ -97,6 +103,7 @@ class LoginForm extends React.Component {
       return;
     }
 
+    //password checks
     if (this.state.password.length < 8) {
       this.setState({
         failure: "Password must be at least 8 characters",
@@ -121,11 +128,13 @@ class LoginForm extends React.Component {
       return;
     }
 
+    //test if it is a valid email, one that is not already in use
     let self = this;
     axios
       .post("http://localhost:3001/users/checkValidEmail", this.state)
       .then((res) => {
         if (res.data[0].exists === false) {
+          //change window to contact info registration, store the email and password
           this.props.callbackEmailPassword(this.state);
           window.location.href = "/submission/register";
         } else {
