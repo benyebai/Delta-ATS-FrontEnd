@@ -115,9 +115,11 @@ export class RegisterForm extends React.Component {
     super(props);
 
     // ensure JSON object first exists
+    /*
     if (!this.props.info) {
       window.location.href = "/submission";
     }
+    */
 
     this.info = JSON.parse(this.props.info);
     this.state = {
@@ -135,9 +137,11 @@ export class RegisterForm extends React.Component {
     };
 
     // ensure JSON contains all the info
+    /*
     if (!this.info.email && !this.info.password) {
       window.location.href = "/submission";
     }
+    */
 
     //binding the things that needs to use the this keyword
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -318,7 +322,7 @@ export class RegisterForm extends React.Component {
       </div>
     );
 
-    
+
     if (this.state.country === "Canada") {
       provinceObj = (
         <Dropdown className="country-box" onSelect={this.handleProvinceChange}>
