@@ -3,6 +3,11 @@ import "./Header.css";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+/*
+ * Header component that displays the red and grey gradients
+ *
+ * Takes in text and link address as props
+ */
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +19,7 @@ class Header extends React.Component {
         <div className="banner-grey">
           <Link to="/">
             <Image src="/DeltaLogoModified.png" className="logo-img-modified" />
-            </Link>
+          </Link>
           <a href={props.href} className="nav-button">
             {props.btn}
           </a>

@@ -48,12 +48,14 @@ export class ProfilePage extends React.Component {
 
   async componentDidMount() {
     await axios
-      .post("http://localhost:3001/users/userInfo", {token: window.sessionStorage.getItem("accessToken")})
+      .post("http://localhost:3001/users/userInfo", {
+        token: window.sessionStorage.getItem("accessToken"),
+      })
       .then((res) => {
-        res.data.data[1][0].firstName = res.data.data[1][0]['first_name']
-        res.data.data[1][0].lastName = res.data.data[1][0]['last_name']
-        res.data.data[0][0].phoneNum = res.data.data[0][0]['phone_number']
-        res.data.data[0][0].postalCode = res.data.data[0][0]['postal_code']
+        res.data.data[1][0].firstName = res.data.data[1][0]["first_name"];
+        res.data.data[1][0].lastName = res.data.data[1][0]["last_name"];
+        res.data.data[0][0].phoneNum = res.data.data[0][0]["phone_number"];
+        res.data.data[0][0].postalCode = res.data.data[0][0]["postal_code"];
         this.setState(res.data.data[0][0]);
         this.setState(res.data.data[1][0]);
       })

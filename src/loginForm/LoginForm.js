@@ -10,12 +10,15 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
+/*
+ * Login/first step for registration.
+ * Asks for user to enter email and password.
+ */
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
-    //failure text change to the type of failure
-    //"email already in use" or something
+    // Failure text change to the type of failure
     this.state = {
       email: "",
       password: "",
@@ -30,6 +33,7 @@ class LoginForm extends React.Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
 
+  // Is run when user types in textbox
   handleChange(e) {
     let toChange = e.target.id;
     this.setState({
@@ -57,7 +61,6 @@ class LoginForm extends React.Component {
         if (res.data.length > 0) {
           window.sessionStorage.setItem("accessToken", res.data.accessToken);
           window.location.href = "/profile";
-
         } else {
           self.setState({
             failure: "Invalid email or password",
@@ -75,7 +78,6 @@ class LoginForm extends React.Component {
 
   handleContinue(e) {
     e.preventDefault();
-
     if (
       this.state.email.indexOf("@") === -1 ||
       this.state.email.indexOf(".") === -1
@@ -131,7 +133,6 @@ class LoginForm extends React.Component {
             failure: "Email already in use",
             errorType: 1,
           });
-          //console.log("Email already in use");
         }
       })
       .catch((res) => {

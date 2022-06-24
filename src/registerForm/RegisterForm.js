@@ -6,6 +6,10 @@ import { Alert, Badge, Dropdown } from "react-bootstrap";
 import { countries } from "./allCountries.js";
 import "./RegisterForm.css";
 
+/*
+ * Second step to registration process
+ * Lets user input rest of information
+ */
 export function doesInfoWork(info) {
   let toSend = info;
   if (toSend.firstName === "" || toSend.lastName === "") {
@@ -64,11 +68,11 @@ export function doesInfoWork(info) {
   } else if (toSend.country === "United States") {
     if (code.length === 10) {
       failedZip = true;
-      //its either 11111-1111
-      //or 1111-11111
-      //as in 5-4 or 4-5
+      // Its either 11111-1111
+      // Or 1111-11111
+      // As in 5-4 or 4-5
 
-      //this means first four
+      // This means first four
       let fFour = code.slice(0, 4);
       let fifth = code.slice(4, 5);
       let lFive = code.slice(5, 10);
@@ -102,12 +106,10 @@ export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
 
-    /*
     // ensure JSON object exists
     if (!this.props.info) {
       window.location.href = "/submission";
     }
-    */
 
     this.info = JSON.parse(this.props.info);
     this.state = {
@@ -124,12 +126,10 @@ export class RegisterForm extends React.Component {
       failure: "",
     };
 
-    /*
     // ensure JSON contains all the info
     if (!this.info.email && !this.info.password) {
       window.location.href = "/submission";
     }
-    */
 
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
