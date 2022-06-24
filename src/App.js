@@ -1,17 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
-import {RegisterLog} from "./RegisterAndLog"
+import { RegisterLog } from "./RegisterAndLog";
 import { ProfilePage } from "./profile/ProfilePage.js";
 
-/* on the off chance that any other people come after us
-we gotta say we have no fucking clue what were doing lmao
-
-we used a fair bit of react bootstrap so make sure to read on that
-react router was used to sort our info
-please fix the landing page
-*/
-
+/*
+ * The front end of the Applicant Tracking System for Delta Controls
+ * Made with react and using many bootstrap components for styling
+ */
 function App() {
   return (
     <div>

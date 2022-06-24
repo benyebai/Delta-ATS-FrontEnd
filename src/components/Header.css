@@ -1,7 +1,6 @@
 .banner-grey {
   width: 100vw;
   height: 7vh;
-  /*background-image: url("/public/header.svg"); */
   background-image: linear-gradient(to right, #c7c7c7, white);
   background-size: contain;
   background-repeat: no-repeat;
@@ -10,7 +9,6 @@
 .banner-red {
   width: 100vw;
   height: 3vh;
-  /*background-image: url("/public/header.svg"); */
   background-image: linear-gradient(to right, #e51937, white);
   background-size: contain;
   background-repeat: no-repeat;

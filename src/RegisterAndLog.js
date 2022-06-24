@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { RegisterForm } from "./registerForm/RegisterForm";
 import LoginForm from "./loginForm/LoginForm";
 
+/*
+ * Component that handles the change from login to register
+ */
 export class RegisterLog extends React.Component {
   constructor(props) {
     super(props);
