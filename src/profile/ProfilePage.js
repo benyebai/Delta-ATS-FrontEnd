@@ -12,7 +12,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import Header from "../components/Header";
-import { doesInfoWork } from "../registerForm/RegisterForm.js";
+import doesInfoWork from "../registerForm/doesInfoWork";
 import { countries } from "../registerForm/allCountries";
 
 export class ProfilePage extends React.Component {
@@ -47,7 +47,6 @@ export class ProfilePage extends React.Component {
   }
 
   async componentDidMount() {
-
     //get user info
     await axios
       .post("http://localhost:3001/users/userInfo", {
@@ -92,7 +91,6 @@ export class ProfilePage extends React.Component {
   }
 
   async handleSave(which) {
-
     //if we tried to save the email
     if (which === "changingEmail") {
       //format the stuff we want to change
@@ -158,7 +156,7 @@ export class ProfilePage extends React.Component {
               failWhere: 0,
               changingContact: false,
             });
-          } 
+          }
         })
 
         .catch((err) => {
@@ -354,3 +352,6 @@ export class ProfilePage extends React.Component {
     );
   }
 }
+
+
+export default ProfilePage
